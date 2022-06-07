@@ -39,4 +39,5 @@ public class SearchProductPage {
     @FindBy(xpath = "(//p)[6]")
     public WebElement brand_polo;
 
+
 }

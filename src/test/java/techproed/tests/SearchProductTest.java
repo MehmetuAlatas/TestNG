@@ -38,8 +38,6 @@ public class SearchProductTest {
         Assert.assertTrue(searchProductPage.category.getText().contains("Women"));
         Assert.assertEquals(searchProductPage.brand_polo.getText(),"Brand: Polo");
 
-
-
     }
 
 }

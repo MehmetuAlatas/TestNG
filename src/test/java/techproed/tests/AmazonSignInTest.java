@@ -34,5 +34,6 @@ public class AmazonSignInTest {
 //        Verify the text "Create account"
         String createAccountText =  amazonSignInPage.createAccountText.getText();
         Assert.assertEquals(createAccountText,"Create account");
+
     }
 }
