@@ -1,6 +1,9 @@
 package techproed.tests.smoketests;
 
+import org.bouncycastle.cert.dane.DANEEntryFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import techproed.pages.DefaultPage;
 import techproed.pages.HomePage;
 import techproed.pages.LoginPage;
 import techproed.utilities.ConfigReader;
@@ -78,19 +81,46 @@ public class Day16_PositiveLogin {
 
     HomePage homePage;
     LoginPage loginPage;
+    DefaultPage defaultPage;
     @Test
     public void adminLogin (){
         Driver.getDriver().get(ConfigReader.getProperty("app_url"));
         homePage=new HomePage();
         loginPage=new LoginPage();
+        defaultPage=new DefaultPage();
         homePage.homeLoginButton.click();
         loginPage.username.sendKeys(ConfigReader.getProperty("admin_username"));
         loginPage.password.sendKeys(ConfigReader.getProperty("admin_password"));
         loginPage.loginButton.click();
 
+        Assert.assertTrue(defaultPage.userID.isDisplayed());
 
+    }
 
-
-
+    @Test
+    public void customerLogin() {
+        /**
+         * USER STORY 2
+         *     •Name:
+         * 	•Customer Login
+         *
+         * 	•Description:
+         * 	•User should be able login as customer
+         *
+         * 	•Acceptance Criteria:
+         * 	•As customer, I should be able to log in the application
+         * 	•Customer email: customer@bluerentalcars.com
+         * 	•Customer password: 12345
+         */
+        Driver.getDriver().get(ConfigReader.getProperty("app_url"));
+        homePage = new HomePage();
+        loginPage = new LoginPage();
+        defaultPage = new DefaultPage();
+        homePage.homeLoginButton.click();
+        loginPage.username.sendKeys(ConfigReader.getProperty("customer_username"));
+        loginPage.password.sendKeys(ConfigReader.getProperty("customer_password"));
+        loginPage.loginButton.click();
+        Assert.assertTrue(defaultPage.userID.isDisplayed());
+        Driver.closeDriver();
     }
 }
