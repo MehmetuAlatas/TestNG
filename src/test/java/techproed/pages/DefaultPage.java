@@ -10,10 +10,8 @@ public class DefaultPage {
     }
     @FindBy(xpath = "//button[@id='dropdown-basic-button']")
     public WebElement userID;
-
     @FindBy(linkText = "Logout")
     public WebElement logOut;
-
     @FindBy(xpath = "//button[text()='OK']")
     public WebElement OK;
 }
