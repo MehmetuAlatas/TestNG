@@ -1,0 +1,83 @@
+
+1.LINK: https://www.selenium.dev/documentation/grid/getting_started/
+2. Change the directory to SeleniumServer
+open CMD or Terminal
+type cd path of the folder
+if you drag and drop you will find the path then press enter
+3. Register to Hub
+  java -jar selenium-server-4.3.0.jar hub
+4. Register to Nodes
+   java -jar selenium-server-4.3.0.jar node   --detect-drivers true
+   Once we register node, we can see the driver details in the URl : http://localhost:4444/ui
+5. Now we have the servers up and running and now we can create our test cases by using RemoteWebDriver
+   Lets create a new class under seleniumgrid package and name it as SeleniumGrid1
+   package techproed.tests.seleniumgrid;
+   import org.openqa.selenium.By;
+   import org.openqa.selenium.WebDriver;
+   import org.openqa.selenium.chrome.ChromeOptions;
+   import org.openqa.selenium.remote.RemoteWebDriver;
+   import org.testng.annotations.Test;
+   import techproed.utilities.ConfigReader;
+   import java.net.MalformedURLException;
+   import java.net.URL;
+   public class SeleniumGrid1 {
+       WebDriver driver;
+       @Test
+       public void test1() throws MalformedURLException, InterruptedException {
+           driver = new RemoteWebDriver(new URL("http://localhost:4444"), new ChromeOptions());
+           driver.get("https://www.bluerentalcars.com/");
+           Thread.sleep(3000);
+           String customerService = driver.findElement(By.xpath("(//div[@class='section-title']//h2)[1]")).getText();
+           System.out.println(customerService);
+           Thread.sleep(3000);
+           System.out.println("Current Thread: " + Thread.currentThread());
+   //        1 thread means => one execution path
+   //        What does this currentThread() returns us, when executed?
+   //        It will return us the reference of currently executing threat object
+   //        currentThread() method tells us which is the current thread executing
+           System.out.println(driver.getTitle());
+           driver.quit();
+       }
+   }
+6. To run cross browser testing, create an xml file and run both of the classes
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Sequential Cross Browser Testing" verbose="1" >
+    <test name="Parallel Test">
+        <classes>
+            <class name="techproed.tests.seleniumgrid.SeleniumGrid1"></class>
+            <class name="techproed.tests.seleniumgrid.SeleniumGrid2"></class>
+        </classes>
+    </test>
+</suite>
+7.To run them in parallel mode, create grid2.xml file and run all the classes
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Sequential Cross Browser Testing" parallel="classes" thread-count="3" verbose="1" >
+    <test name="Parallel Test">
+        <classes>
+            <class name="techproed.tests.seleniumgrid.SeleniumGrid1"></class>
+            <class name="techproed.tests.seleniumgrid.SeleniumGrid2"></class>
+            <class name="techproed.tests.seleniumgrid.SeleniumGrid3"></class>
+        </classes>
+    </test>
+</suite>
+**************************************************************************
+ What to remember?
+ **** What is cross browser testing?
+      - Running tests on different browsers
+
+ **** Why do you do cross browser testing?
+      - for checking the adaptation of application in different browsers
+
+ **** How do you do parallel testing with SeleniumGrid?
+     We have test suites, and we have created xml file for parallel testing with SeleniumGrid
+
+ *** What is HUB?
+     Hub is central server. Hub takes all tests in selenium grid and distributes them to the nodes
+
+ *** What is NODE?
+     Nodes are used to execute the test cases
+     There can be different platforms and browsers in each node.
+     We can run on chrome for one node, and firefox for another node.
+     There can be multiple nodes on one hub
+
+

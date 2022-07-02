@@ -30,7 +30,7 @@ public class Day16_PositiveLogin {
     }
 
 
-    @Test
+    @Test(groups = "smoke-group-1")
     public void customerLogin(){
         Driver.getDriver().get(ConfigReader.getProperty("app_url"));
         homePage = new HomePage();
