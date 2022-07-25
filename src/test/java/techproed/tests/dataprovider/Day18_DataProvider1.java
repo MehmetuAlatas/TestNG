@@ -34,7 +34,4 @@ public class Day18_DataProvider1 {
  * the parameter list of the test method. The @Test method that wants to receive data from
  * this DataProvider needs to use a dataProvider name equals to the name of this annotation.
  name: The name of this data provider. If it's not supplied, the name of this data provider will
- automatically be set to the name of the method
- *
- *
- */
+ automatically be set to the name of the method  */

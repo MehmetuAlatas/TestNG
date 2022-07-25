@@ -72,6 +72,7 @@ public class Day17_ExcelLogin {
             ReusableMethods.getScreenshot("LoginTest");
         }
     }
+
     @AfterMethod
     public void tearDown(){
         Driver.closeDriver();
