@@ -73,8 +73,11 @@ public class Day17_ExcelLogin {
         }
     }
 
+
     @AfterMethod
     public void tearDown(){
+
         Driver.closeDriver();
+
     }
 }
