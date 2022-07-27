@@ -31,7 +31,8 @@ public class Driver {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         return driver;
-    }//getDriver ends here
+    }
+    //getDriver ends here
     //    create a closeDriver method to close the driver
     public static void closeDriver(){
 //        quit the driver id it is pointing chromedriver, firefoxdriver, edgedriver,....

@@ -2,6 +2,7 @@ package techproed.utilities;
 import java.io.FileInputStream;
 import java.util.Properties;
 public class ConfigReader {
+
     //This class reads the configuration.properties file
     //Create Properties instance
     private static Properties properties;
@@ -18,6 +19,7 @@ public class ConfigReader {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
     //This method will get the key from properties file,
     //And return the value as String
